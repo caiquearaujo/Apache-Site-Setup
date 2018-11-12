@@ -14,6 +14,12 @@ The bash script **Apache Site Setup** born to solve all of your problems. Take a
 6. Creates the vhosts configuration file to http and https website;
 7. Enables the websites and reloads Apache.
 
+## New in v1.1
+
+1. Filter each variable typed in the terminal;
+2. Setup the public folder creation as optional;
+3. A command to only execute somekind of tasks. For example: only changes permissions of folders or only create the folders.
+
 ## How to Use
 
 The bash script is really easy to use. There are some considerations about your parameters. Take a look:
@@ -21,6 +27,16 @@ The bash script is really easy to use. There are some considerations about your 
 ### DOMAIN (REQUIRED)
 The main domain. By using the commands `-d` or `--domain`.
 You type in the following format: `example.com`.
+
+### DOMAIN PROVIDER (OPTIONAL)
+The provider configuration file. By using the commands `-dP` or `--domain-provider`.
+You type in the following format: `default.apache` file name without extension.
+
+Each provider was your own configuration in vhost file.
+Everything you have to do is copy the `default.apache.conf` file and edit in the way you want.
+If you save the file as `default.python.conf` you have to use `default.python` in this command.
+
+**BY DEFAULT** it uses `default.apache`.
 
 ### SUBDOMAIN (OPTIONAL)
 The subdomain to configure. By using the commands `-s` or `--subdomain`.
@@ -52,8 +68,6 @@ You type in the following format: `public_html`.
 You just have to write the public folder name.
 It will be created inside the domain/subdomain folder.
 
-**BY DEFAULT** it uses `public_html`.
-
 ### SSL (OPTIONAL)
 Enables the SSL. By using the commands `-S` or `--ssl`.
 You don't have to type nothing, just type the command.
@@ -68,10 +82,22 @@ Each provider was your own path and way to store the SSL keys, and somekind more
 Everything you have to do is copy the `default.apache.ssl.conf` file and edit in the way you want.
 If you save the file as `default.comodo.ssl.conf` you have to use `default.comodo.ssl` in this command.
 
+**BY DEFAULT** it uses `default.apache.ssl`.
+
 **IMPORTANT** 
 You don't have to add the extension `.conf`, just the file name.
 
-**BY DEFAULT** it uses `default.apache.ssl`.
+### OPERATIONS (OPTIONAL)
+Execute all script or just some part of this. Only one command by execution.
+
+1. `--all` Execute all operations. By default.
+2. `--folders` Creates the folders to domain.
+3. `--perms` Changes the domain folder permissions.
+4. `--logs` Creates the log folders to domain.
+5. `--config` Creates the VHost configuration files.
+6. `--enables` Enables the websites.
+
+**BY DEFAULT** it uses `all`.
 
 ## The Configuration Files
 As you see, you have three files `.conf` and they are essential to make the vhost configuration in Apache `sites-available` folder.
@@ -95,10 +121,7 @@ Here are the variables that you be replaced in the file:
 ## What's next?
 For now, it's a lot good. But there are some considerations we can improve:
 
-1. Filter each variable typed in the terminal;
-2. Setup the public folder creation as optional;
-3. A command to only execute somekind of tasks. For example: only changes permissions of folders or only create the folders;
-4. Improve the default configuration files, creating them if them don't exist.
+1. Improve the default configuration files, creating them if them don't exist.
 
 ## Version
-1.0.0
+1.1.0
